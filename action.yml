@@ -1,11 +1,21 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: Get Release Asset
+description: 'Get a release asset from any repository'
 inputs:
-  milliseconds: # change this
+  repository:
+    description: 'Repository to fetch the asset'
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  asset:
+    description: 'Regex of the asset. First match is returned'
+    required: true
+  github_token:
+    description: 'Github token. Must be used for private repositories'
+    required: true
+  release_id:
+    description: 'The id of the release. Defaults to the latest release'
+    required: false
+outputs:
+  asset_path:
+    description: 'A path to the downloaded asset'
 runs:
   using: 'node16'
   main: 'dist/index.js'
